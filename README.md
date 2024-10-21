@@ -16,7 +16,8 @@ Dado que se prefiere un modelado en capas o arquitectura limpia seguí los princ
 
 La API REST fue documentada utilizando Swagger, lo que facilita la interacción con los endpoints de manera clara y concisa.
 
-    - Para acceder a la documentación, ejecutar el proyecto y acceder a: http://localhost:8000/api/doc
+    - Para acceder a la documentación, ejecutar el proyecto y acceder a: http://localhost:8000/api/doc (no pude configurarlo para que muestre los datos del json)
+    - La documentación se encuentra en /public/swagger.json
     - Se realizaron los endpoint de jugar torneo y obtener resultados con filtros
 
 # Pruebas Unitarias e Integración

@@ -1,0 +1,276 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Torneo-tenis by Maxi Mohamed",
+        "description": "API documentation for the Torneo-tenis project",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/torneos/hombres/jugar": {
+            "post": {
+                "summary": "Jugar torneo masculino",
+                "operationId": "dd97a8e362e4a45c5bec54fd35c8a8b6",
+                "requestBody": {
+                    "description": "Torneo masculino",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombreTorneo": {
+                                        "type": "string",
+                                        "example": "Torneo de Hombres"
+                                    },
+                                    "jugadores": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "nombre": {
+                                                    "type": "string",
+                                                    "example": "Jugador 1"
+                                                },
+                                                "habilidad": {
+                                                    "type": "integer",
+                                                    "maximum": 100,
+                                                    "minimum": 0,
+                                                    "example": 80
+                                                },
+                                                "fuerza": {
+                                                    "type": "integer",
+                                                    "maximum": 100,
+                                                    "minimum": 0,
+                                                    "example": 70
+                                                },
+                                                "velocidad": {
+                                                    "type": "integer",
+                                                    "maximum": 100,
+                                                    "minimum": 0,
+                                                    "example": 75
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "ganador": {
+                                            "type": "string",
+                                            "example": "Jugador 1"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Se requieren jugadores, un número par de jugadores, o el nombre del torneo."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/torneos/mujeres/jugar": {
+            "post": {
+                "summary": "Jugar torneo femenino",
+                "operationId": "a20813ac23f2c71c26922fe32570ea74",
+                "requestBody": {
+                    "description": "Torneo femenino",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombreTorneo": {
+                                        "type": "string",
+                                        "example": "Torneo de Mujeres"
+                                    },
+                                    "jugadores": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "nombre": {
+                                                    "type": "string",
+                                                    "example": "Jugadora 1"
+                                                },
+                                                "habilidad": {
+                                                    "type": "integer",
+                                                    "maximum": 100,
+                                                    "minimum": 0,
+                                                    "example": 80
+                                                },
+                                                "tiempoReaccion": {
+                                                    "type": "integer",
+                                                    "minimum": 0,
+                                                    "example": 0.5
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Se requieren jugadoras, un número par de jugadoras, o el nombre del torneo."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/torneos/resultados": {
+            "get": {
+                "summary": "Consultar resultados de torneos",
+                "description": "Este endpoint permite consultar los resultados de los torneos de tenis según filtros opcionales.",
+                "operationId": "7ac66391ede4117515313e4da5987749",
+                "parameters": [
+                    {
+                        "name": "fecha",
+                        "in": "query",
+                        "description": "Fecha del torneo en formato Y-m-d (opcional).",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "genero",
+                        "in": "query",
+                        "description": "Género del torneo (Masculino o Femenino) (opcional).",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "Masculino",
+                                "Femenino"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "nombre",
+                        "in": "query",
+                        "description": "Nombre del torneo (opcional).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resultados encontrados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "nombreTorneo": {
+                                                "type": "string",
+                                                "example": "Torneo de Hombres"
+                                            },
+                                            "resultado": {
+                                                "type": "string",
+                                                "example": "Ganador: Jugador 1"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontraron resultados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No se encontraron torneos que respondan a los filtros proporcionados."
+                                        },
+                                        "filtros": {
+                                            "properties": {
+                                                "fecha": {
+                                                    "type": "string",
+                                                    "example": "2024-10-21"
+                                                },
+                                                "genero": {
+                                                    "type": "string",
+                                                    "example": "Masculino"
+                                                },
+                                                "nombre": {
+                                                    "type": "string",
+                                                    "example": "Torneo de Hombres"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "La fecha debe tener el formato Y-m-d, o el género debe ser 'Masculino' o 'Femenino'."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

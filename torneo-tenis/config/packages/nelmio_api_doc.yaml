@@ -4,6 +4,8 @@ nelmio_api_doc:
             title: Torneo-tenis by Maxi Mohamed
             description: API documentation for the Torneo-tenis project
             version: 1.0.0
+            
     areas:
         path_patterns:
             - ^/api(?!/doc$)
+            
