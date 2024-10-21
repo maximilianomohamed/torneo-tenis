@@ -1,0 +1,20 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+api_torneos_hombres_jugar:
+    path: /api/torneos/hombres/jugar
+    controller: App\Controller\ApiController::jugarTorneoHombres
+    methods: [POST]
+
+api_torneos_mujeres_jugar:
+    path: /api/torneos/mujeres/jugar
+    controller: App\Controller\ApiController::jugarTorneoMujeres
+    methods: [POST]
+
+api_torneos_consultar_resultados:
+    path: /api/torneos/resultados
+    controller: App\Controller\ApiController::consultarResultados
+    methods: [GET]
